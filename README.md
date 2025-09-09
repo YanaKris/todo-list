@@ -8,8 +8,8 @@
 ## Старт проекта
 
 ```bash
-git clone <твой-репозиторий>
-cd <папка-проекта>
+git clone https://github.com/YanaKris/todo-list.git
+cd todo-list
 ```
 Установка зависимостей и запуск приложения:
 
@@ -18,7 +18,7 @@ npm i && npm run start
 ```
 Откроется локально на http://localhost:5173
 
-Сборка проекта для продакшена:
+Сборка проекта:
 ```bash
 npm run build
 ```
