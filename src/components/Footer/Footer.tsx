@@ -1,5 +1,13 @@
 import React from "react";
-import { Flex, Button, HStack, Text, Box } from "@chakra-ui/react";
+import {
+    Flex,
+    Button,
+    HStack,
+    Text,
+    Box,
+    Stack,
+    useBreakpointValue,
+} from "@chakra-ui/react";
 
 interface FooterProps {
     todos: { id: number; text: string; done: boolean }[];
@@ -16,53 +24,53 @@ export const Footer: React.FC<FooterProps> = ({
                                               }) => {
     const remaining = todos.filter((t) => !t.done).length;
 
+    const isMobile = useBreakpointValue({ base: true, md: false });
+
     return (
-        <Box
-            w="100%"
-            maxW={{ base: "90%" }}
-            mx="auto"
-            mt={4}
-            px={2}
-        >
-            <Flex
+        <Box w="100%" maxW="90%" mx="auto" mt={4} px={2}>
+            <Stack
+                direction={isMobile ? "column" : "row"}
                 justify="space-between"
-                align="center"
+                align={isMobile ? "flex-start" : "center"}
+                spacing={isMobile ? 3 : 0}
                 fontSize="sm"
                 color="gray.500"
             >
-                <Text>{remaining} items left</Text>
-                <HStack spacing={2}>
-                    <Button
-                        size="sm"
-                        variant={filter === "all" ? "solid" : "ghost"}
-                        onClick={() => setFilter("all")}
-                    >
-                        All
-                    </Button>
-                    <Button
-                        size="sm"
-                        variant={filter === "active" ? "solid" : "ghost"}
-                        onClick={() => setFilter("active")}
-                    >
-                        Active
-                    </Button>
-                    <Button
-                        size="sm"
-                        variant={filter === "completed" ? "solid" : "ghost"}
-                        onClick={() => setFilter("completed")}
-                    >
-                        Completed
-                    </Button>
-                </HStack>
+                <Flex align="center" gap={2}>
+                    <Text>{remaining} items left</Text>
+                    <HStack spacing={1}>
+                        <Button
+                            size="sm"
+                            variant={filter === "all" ? "solid" : "ghost"}
+                            onClick={() => setFilter("all")}
+                        >
+                            All
+                        </Button>
+                        <Button
+                            size="sm"
+                            variant={filter === "active" ? "solid" : "ghost"}
+                            onClick={() => setFilter("active")}
+                        >
+                            Active
+                        </Button>
+                        <Button
+                            size="sm"
+                            variant={filter === "completed" ? "solid" : "ghost"}
+                            onClick={() => setFilter("completed")}
+                        >
+                            Completed
+                        </Button>
+                    </HStack>
+                </Flex>
                 <Button
                     size="sm"
                     variant="ghost"
-                    colorScheme="gray.400"
+                    colorScheme="gray"
                     onClick={clearCompleted}
                 >
                     Clear completed
                 </Button>
-            </Flex>
+            </Stack>
         </Box>
     );
 };
