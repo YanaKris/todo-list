@@ -1,40 +1,36 @@
-import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, chakra } from "@chakra-ui/react";
+
+const SvgText = chakra("text");
 
 export const Header: React.FC = () => {
     return (
         <Box mb={6} textAlign="center">
-            <svg
+            <chakra.svg
                 width="100%"
-                viewBox="0 0 800 200" // адаптируй под нужный размер
+                viewBox="0 0 800 200"
                 preserveAspectRatio="xMidYMid meet"
                 aria-hidden="true"
-                style={{
-                    maxWidth: "100%",
-                    height: "auto",
-                }}
+                sx={{ maxWidth: "100%", height: "auto" }}
             >
-                <text
+                <SvgText
                     x="50%"
                     y="50%"
                     textAnchor="middle"
                     dominantBaseline="middle"
-                    fill="none" // ← ВАЖНО: без заливки
-                    stroke="gray" // ← цвет обводки
-                    strokeWidth="2" // ← толщина обводки
+                    fill="none"
+                    stroke="gray"
+                    strokeWidth="2"
                     fontWeight="900"
-                    textTransform="uppercase"
-                    letterSpacing="0.2em"
                     style={{
-                        fontSize: "clamp(2rem, 8vw, 5rem)", // адаптивный размер
-                        fontFamily: "inherit", // наследуем шрифт от Chakra
-                        textTransform: "uppercase",
+                        fontSize: "clamp(2rem, 8vw, 5rem)",
+                        fontFamily: "inherit", // или "heading", если используешь тему
+                        textTransform: "uppercase", // ← CSS-свойство → только в style
                         letterSpacing: "0.2em",
                     }}
                 >
                     todo list
-                </text>
-            </svg>
+                </SvgText>
+            </chakra.svg>
         </Box>
     );
 };
