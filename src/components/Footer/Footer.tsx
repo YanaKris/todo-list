@@ -2,12 +2,13 @@ import React from "react";
 import {
     Flex,
     Button,
-    HStack,
     Text,
     Box,
-    Stack,
+    Wrap,
     useBreakpointValue,
 } from "@chakra-ui/react";
+
+type FlexDirection = "row" | "column";
 
 interface FooterProps {
     todos: { id: number; text: string; done: boolean }[];
@@ -24,21 +25,34 @@ export const Footer: React.FC<FooterProps> = ({
                                               }) => {
     const remaining = todos.filter((t) => !t.done).length;
 
-    const isMobile = useBreakpointValue({ base: true, md: false });
+
+    const flexDirection = useBreakpointValue<FlexDirection>({
+        base: "column",
+        sm: "row",
+    });
+
+    const filterDirection = useBreakpointValue<FlexDirection>({
+        base: "column",
+        md: "row",
+    });
+
+    const spacing = useBreakpointValue({ base: 1, md: 2 });
 
     return (
         <Box w="100%" maxW="90%" mx="auto" mt={4} px={2}>
-            <Stack
-                direction={isMobile ? "column" : "row"}
+            <Flex
+                direction={flexDirection}
                 justify="space-between"
-                align={isMobile ? "flex-start" : "center"}
-                spacing={isMobile ? 3 : 0}
+                align="center"
                 fontSize="sm"
                 color="gray.500"
+                gap={3}
+                wrap="wrap"
             >
-                <Flex align="center" gap={2}>
-                    <Text>{remaining} items left</Text>
-                    <HStack spacing={1}>
+                <Flex align="center" gap={3}>
+                    <Text whiteSpace="nowrap">{remaining} items left</Text>
+
+                    <Wrap spacing={spacing} direction={filterDirection} shouldWrapChildren>
                         <Button
                             size="sm"
                             variant={filter === "all" ? "solid" : "ghost"}
@@ -60,17 +74,26 @@ export const Footer: React.FC<FooterProps> = ({
                         >
                             Completed
                         </Button>
-                    </HStack>
+                    </Wrap>
                 </Flex>
-                <Button
-                    size="sm"
-                    variant="ghost"
-                    colorScheme="gray"
-                    onClick={clearCompleted}
+
+                <Flex
+                    direction={flexDirection}
+                    wrap={useBreakpointValue({ base: "wrap", sm: "nowrap" })}
+                    justify={useBreakpointValue({ base: "center", sm: "flex-end" })}
+                    align="center"
+                    gap={3}
                 >
-                    Clear completed
-                </Button>
-            </Stack>
+                    <Button
+                        size="sm"
+                        variant="ghost"
+                        colorScheme="gray"
+                        onClick={clearCompleted}
+                    >
+                        Clear completed
+                    </Button>
+                </Flex>
+            </Flex>
         </Box>
     );
 };

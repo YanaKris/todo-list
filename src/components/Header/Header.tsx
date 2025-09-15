@@ -1,24 +1,40 @@
 import React from "react";
-import {Box, Heading} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 export const Header: React.FC = () => {
     return (
-        <Box mb={6}>
-            <Heading   as="h1"
-                       fontSize={{ base: "3xl", md: "5xl" }}
-                       fontWeight="black"
-                       //color="gray.500"
-                       textTransform="uppercase"
-                       letterSpacing="widest"
-                       textAlign="center"
-                       mb={6}
-                       color="transparent"
-                       sx={{
-                           WebkitTextStroke: "1px gray", // толщина и цвет обводки
-                       }}>
-
-                todo list
-            </Heading>
+        <Box mb={6} textAlign="center">
+            <svg
+                width="100%"
+                viewBox="0 0 800 200" // адаптируй под нужный размер
+                preserveAspectRatio="xMidYMid meet"
+                aria-hidden="true"
+                style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                }}
+            >
+                <text
+                    x="50%"
+                    y="50%"
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    fill="none" // ← ВАЖНО: без заливки
+                    stroke="gray" // ← цвет обводки
+                    strokeWidth="2" // ← толщина обводки
+                    fontWeight="900"
+                    textTransform="uppercase"
+                    letterSpacing="0.2em"
+                    style={{
+                        fontSize: "clamp(2rem, 8vw, 5rem)", // адаптивный размер
+                        fontFamily: "inherit", // наследуем шрифт от Chakra
+                        textTransform: "uppercase",
+                        letterSpacing: "0.2em",
+                    }}
+                >
+                    todo list
+                </text>
+            </svg>
         </Box>
     );
 };
