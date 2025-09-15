@@ -1,36 +1,34 @@
-import { Box, chakra } from "@chakra-ui/react";
-
-const SvgText = chakra("text");
+import React from "react";
+import { Box, Heading } from "@chakra-ui/react";
 
 export const Header: React.FC = () => {
     return (
-        <Box mb={6} textAlign="center">
-            <chakra.svg
-                width="100%"
-                viewBox="0 0 800 200"
-                preserveAspectRatio="xMidYMid meet"
-                aria-hidden="true"
-                sx={{ maxWidth: "100%", height: "auto" }}
+        <Box mb={6}>
+            <Heading
+                as="h1"
+                fontSize={{ base: "3xl", md: "5xl" }}
+                fontWeight="black"
+                textTransform="uppercase"
+                letterSpacing="widest"
+                textAlign="center"
+                mb={6}
+                color="transparent"
+                sx={{
+                    fontFamily: '"Courier New", monospace', // ← ключевой момент!
+                    textShadow: `
+                        -1px -1px 0 gray,
+                        1px -1px 0 gray,
+                        -1px 1px 0 gray,
+                        1px 1px 0 gray,
+                        0px 1px 0 gray,
+                        0px -1px 0 gray,
+                        -1px 0px 0 gray,
+                        1px 0px 0 gray
+                    `,
+                }}
             >
-                <SvgText
-                    x="50%"
-                    y="50%"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fill="none"
-                    stroke="gray"
-                    strokeWidth="2"
-                    fontWeight="900"
-                    style={{
-                        fontSize: "clamp(2rem, 8vw, 5rem)",
-                        fontFamily: "inherit", // или "heading", если используешь тему
-                        textTransform: "uppercase", // ← CSS-свойство → только в style
-                        letterSpacing: "0.2em",
-                    }}
-                >
-                    todo list
-                </SvgText>
-            </chakra.svg>
+                todo list
+            </Heading>
         </Box>
     );
 };
