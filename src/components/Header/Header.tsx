@@ -14,17 +14,10 @@ export const Header: React.FC = () => {
                 mb={6}
                 color="transparent"
                 sx={{
-                    fontFamily: '"Courier New", monospace', // ← ключевой момент!
-                    textShadow: `
-                        -1px -1px 0 gray,
-                        1px -1px 0 gray,
-                        -1px 1px 0 gray,
-                        1px 1px 0 gray,
-                        0px 1px 0 gray,
-                        0px -1px 0 gray,
-                        -1px 0px 0 gray,
-                        1px 0px 0 gray
-                    `,
+                    color: "transparent",
+                    WebkitTextStroke: "1px gray",
+                    paintOrder: "stroke fill", // ← сначала обводка, потом заливка
+                    strokeWidth: 1,
                 }}
             >
                 todo list
