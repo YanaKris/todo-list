@@ -6,18 +6,16 @@ export const Header: React.FC = () => {
         <Box mb={6}>
             <Heading
                 as="h1"
-                fontSize={{ base: "3xl", md: "5xl" }}
+                fontSize={{ base: "2xl", md: "5xl" }}
                 fontWeight="black"
                 textTransform="uppercase"
-                letterSpacing="widest"
+                letterSpacing={{ base: "wide", md: "widest" }}
                 textAlign="center"
                 mb={6}
-                color="transparent"
                 sx={{
                     color: "transparent",
                     WebkitTextStroke: "1px gray",
-                    paintOrder: "stroke fill", // ← сначала обводка, потом заливка
-                    strokeWidth: 1,
+                    paintOrder: "stroke fill",
                 }}
             >
                 todo list
